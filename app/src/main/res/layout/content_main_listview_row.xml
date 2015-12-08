@@ -3,8 +3,8 @@
     android:id="@+id/contentMainListViewRowName"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/content_main_listview_row_selector"
     android:padding="10dip"
-    android:textSize="16dip"
     android:text="Template Text"
-    android:textStyle="bold" >
-</TextView>
+    android:textSize="16dip"
+    android:textStyle="bold"></TextView>
