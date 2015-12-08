@@ -15,9 +15,13 @@ import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.song.listviewfiddle.db.DbAdapter;
+
 public class MainActivity extends AppCompatActivity {
 
-    private String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry","WebOS","Ubuntu","Windows7","Max OS X"};
+    private String[] mobileArray = {"Android", "IPhone", "WindowsMobile", "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X"};
+
+    private DbAdapter mDbAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +30,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        mDbAdapter = new DbAdapter(this);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("wawawa", "floating button clicked");
+                /*
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                        */
             }
         });
 
@@ -59,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
                 Log.e("wawawa", "onActionItemClicked");
+                switch (item.getItemId()) {
+                    case R.id.menu_main_contexual_delete:
+                        Log.e("wawawa", "Delete clicked");
+                        mode.finish();
+                        break;
+                }
                 return false;
             }
 
