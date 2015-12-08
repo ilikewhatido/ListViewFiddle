@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.TextUtils;
 import android.util.Log;
 
 /**
@@ -33,15 +34,24 @@ public class DbAdapter {
     }
 
     public long addRestaurant(String name, String number) {
-        Log.e(getClass().getName(), "executing addRestaurant...");
+        Log.d(getClass().getName(), "executing addRestaurant...");
         ContentValues contentValues = new ContentValues();
         contentValues.put(RESTAURANT_NAME, name);
         contentValues.put(RESTAURANT_NUMBER, number);
         return mSQLiteDatabase.insert(TABLE_RESTAURANT, null, contentValues);
     }
 
+    public void deleteRestaurants(long[] ids) {
+        String[] idsToDelete = new String[ids.length];
+        for(int i = 0; i < ids.length; i++)
+            idsToDelete[i] = String.valueOf(ids[i]);
+        String whereClause = RESTAURANT_UID + " IN (" + TextUtils.join(",", idsToDelete) + ")";
+        Log.d(getClass().getName(), "deleteRestaurants" + " WHERE " + whereClause);
+        mSQLiteDatabase.delete(TABLE_RESTAURANT, whereClause, null);
+    }
+
     public Cursor getRestaurants() {
-        Log.e(getClass().getName(), "executing getRestaurants...");
+        Log.d(getClass().getName(), "executing getRestaurants...");
         String[] columns = {RESTAURANT_UID, RESTAURANT_NAME, RESTAURANT_NUMBER};
         return mSQLiteDatabase.query(TABLE_RESTAURANT, columns, null, null, null, null, null);
     }

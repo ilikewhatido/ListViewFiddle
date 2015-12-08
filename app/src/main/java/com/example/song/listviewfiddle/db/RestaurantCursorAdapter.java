@@ -42,13 +42,6 @@ public class RestaurantCursorAdapter extends CursorAdapter {
     public void bindView(View listRow, Context context, Cursor cursor) {
         ViewHolder holder = (ViewHolder)listRow.getTag();
         String name = getCursor().getString(cursor.getColumnIndex(DbAdapter.RESTAURANT_NAME));
-        Long id = getCursor().getLong(cursor.getColumnIndex(DbAdapter.RESTAURANT_UID));
-        // TODO
-        //if(mCheckedItemIds.contains(id)) {
-           // listRow.setBackgroundColor(Color.GREEN);
-      //  } else {
-          //  listRow.setBackgroundColor(Color.WHITE);
-    //    }
         holder.name.setText(name);
     }
 

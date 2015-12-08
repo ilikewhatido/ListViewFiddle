@@ -1,8 +1,5 @@
 package com.example.song.listviewfiddle;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -67,16 +64,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityActio
 
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                Log.d("wawawa", "onActionItemClicked");
+                Log.d(getClass().getName(), "onActionItemClicked");
                 switch (item.getItemId()) {
                     case R.id.menu_main_contexual_delete:
+                        Log.d(getClass().getName(), "Deleteing...");
                         long[] ids = listView.getCheckedItemIds();
-                        StringBuffer buffer = new StringBuffer();
-                        for (long i : ids) {
-                            buffer.append(i).append(", ");
-                        }
-                        Log.d("wawawa", "listView.getCheckedItemIds()=" + buffer.toString());
+                        mDbAdapter.deleteRestaurants(ids);
                         mode.finish();
+                        refreshRestaurantList();
                         break;
                 }
                 return false;

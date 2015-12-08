@@ -6,4 +6,6 @@
     <string name="fragment_add_restaurant_number">Restaurant Number</string>
     <string name="fragment_add_restaurant_cancel">Cancel</string>
     <string name="fragment_add_restaurant_ok">OK</string>
+
+    <string name="menu_main_contexual_remove">Remove</string>
 </resources>
